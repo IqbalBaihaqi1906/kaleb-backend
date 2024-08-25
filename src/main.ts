@@ -1,14 +1,11 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ConfigService } from '@nestjs/config';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { HttpExceptionFilter } from './exception/http.exception';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
-  const config = new ConfigService();
   const logger = new Logger('NestApplication');
 
   app.useGlobalPipes(
@@ -28,7 +25,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('documentation', app, document);
 
-  const PORT = config.get('PORT') || 3000;
+  const PORT = 3000;
   await app.listen(PORT);
   logger.log(`Server is running on port ${PORT}`);
 }
