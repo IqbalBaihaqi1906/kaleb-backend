@@ -27,6 +27,6 @@ async function bootstrap() {
 
   const PORT = 3000;
   await app.listen(PORT);
-  logger.log(`Server is running on port ${PORT}`);
+  logger.log(`Server is running on port 3000`);
 }
 bootstrap();
